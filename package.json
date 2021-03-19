@@ -1,0 +1,17 @@
+{
+  "name": "chill-hub-eco",
+  "version": "1.0.0",
+  "description": "Chill hub economy, a bot for a better age",
+  "main": "index.js",
+  "dependencies": {
+    "discord.js": "^12.5.1",
+    "dotenv": "^8.2.0",
+    "winston": "^3.3.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
