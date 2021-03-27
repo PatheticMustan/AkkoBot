@@ -1,4 +1,4 @@
-module.exports = (client) => {
+module.exports = client => {
     client.loadCommand = (cmdFileName) => {
         try {
             const command = require(`../commands/${cmdFileName}`);
@@ -12,7 +12,7 @@ module.exports = (client) => {
         } catch (err) {
             return `Unable to load command ${cmdFileName}: ${err}`;
         }
-    };
+    }
 
     client.loadEvent = (eventFileName) => {
         try {
@@ -23,18 +23,5 @@ module.exports = (client) => {
         } catch (err) {
             return `Unable to load event ${eventFileName}: ${err}`;
         }
-    };
-
-    process.on('SIGTERM', async () => {
-        await client.logger.log('SIGTERM signal received.');
-        await client.logger.log('Bot shutting down...');
-        await client.destroy(() => {
-            client.logger.log('Bot has shut down.');
-            process.exit(0);
-        });
-    });
-    
-    process.on('unhandledRejection', error => {
-        console.error(error);
-    });
-};
+    }
+}

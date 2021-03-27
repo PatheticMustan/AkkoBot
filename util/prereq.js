@@ -1,3 +1,7 @@
 module.exports = {
-    prereq = 
+    prereq = (obj, keys) => {
+        for (const key of keys) {
+            
+        }
+    }
 }
