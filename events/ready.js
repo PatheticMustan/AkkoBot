@@ -1,3 +1,5 @@
+const logger = require("../util/logger");
+
 module.exports = async (client) => {
-    console.log(`[Discord API]: ${client.user} is now online!`)
+    logger.info(`${client.user.username} is now online!`);
 }

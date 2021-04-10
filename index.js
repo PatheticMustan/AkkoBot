@@ -5,6 +5,7 @@ const fs = require("fs");
 require("dotenv").config()
 
 const config = require("./config.js");
+const logger = require("./util/logger");
 const { prefix } = config;
 
 
@@ -26,38 +27,50 @@ const commandFiles = fs.readdirSync("./commands").filter(file => file.endsWith("
 const eventFiles = fs.readdirSync("./events").filter(file => file.endsWith(".js"));
 
 require("./util/load")(client);
-require("./util/logger")(client);
-
-tree.info("test");
+client.logger = require("./util/logger");
 
 
-for (const fileName of commandFiles) {
-	const error = client.loadCommand(fileName);
-	if (error) console.error(error);
-}
 
-for (const fileName of eventFiles) {
-	const error = client.loadEvent(fileName);
-	if (error) console.error(error);
-}
+// crisp, clean, lock!
+const loadedCommands = commandFiles.map(fileName => client.loadCommand(fileName)).reduce((a, b) => a + b, 0),
+	  failedCommands = commandFiles.length-loadedCommands;
+	
+const loadedEvents = eventFiles.map(fileName => client.loadEvent(fileName)).reduce((a, b) => a + b, 0),
+	  failedEvents = eventFiles.length-loadedEvents;
 
-// command handler
+// sure, the lines may be a bit verbose, but at least it looks nice!
+logger.info(`Loaded ${loadedCommands}/${commandFiles.length} commands` +
+	(failedCommands? `, failed to load ${failedCommands} commands` : ""));
+
+logger.info(`Loaded ${loadedEvents}/${eventFiles.length} commands` +
+	(failedEvents? `, failed to load ${failedEvents} events` : ""));
+
+
+
+// command handler, both on send, and on edit
 client.on("message", async msg => handleCommand(msg));
 client.on("messageUpdate", async msg => handleCommand(msg));
 
 const handleCommand = async msg => {
-    const text = msg.content;
-    if (text.startsWith(prefix)) {
+	const text = msg.content;
+	if (text.startsWith(prefix)) {
 		// ?pet 00100000
 		// commandName = "pet"
 		// args = ["00100000"]
-        const [commandName, ...args] = text.slice(prefix.length).split(" ");
-        
-        const alias = client.aliases.get(commandName);
-        const command = client.commands.get(commandName) || client.commands.get(alias);
-        
-        if (command) command.run(client, msg, args);
-    }
+		const [commandName, ...args] = text.slice(prefix.length).split(" ");
+		
+		const alias = client.aliases.get(commandName);
+		const command = client.commands.get(commandName) || client.commands.get(alias);
+		
+		try {
+			command.run(client, msg, args);
+		} catch (err) {
+			logger.error(err);
+			logger.verbose(err.stack);
+		}
+	}
 }
+
+
 
 client.login(process.env.CLIENT_TOKEN);

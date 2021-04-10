@@ -3,6 +3,6 @@ module.exports = {
     aliases: ["e"],
     setup: () => {},
     run: (client, message) => {
-        console.log(message.value);
+        logger.info(message.value);
     }
 }
