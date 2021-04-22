@@ -1,8 +1,10 @@
+const user = require("../lib/user");
+
 module.exports = {
     name: "eval",
     aliases: ["e"],
     setup: () => {},
     run: (client, message) => {
-        logger.info(message.value);
+        message.reply("Nice try!");
     }
 }

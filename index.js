@@ -1,6 +1,6 @@
 const { Discord, MessageEmbed, Collection, Client } = require("discord.js");
 const fs = require("fs");
-
+const user = require("./lib/user")
 // env variables are auto-imported on replit, press the "run" button. 
 require("dotenv").config()
 
@@ -52,6 +52,33 @@ client.on("message", async msg => handleCommand(msg));
 client.on("messageUpdate", async msg => handleCommand(msg));
 
 const handleCommand = async msg => {
+	
+
+	//Check if user is not a bot(we dont do bot storage)
+	if(!msg.author.bot){
+		//Experience System 
+		if(!fs.existsSync(`./data/users/${msg.author.id}.json`)){		
+			console.log('Generating user data for ' + msg.author.id)
+			try{
+				user.genuserdata(msg.author.id,msg);
+			  }
+			  catch(e){
+				  msg.reply("Error generating data:\n " + e)
+			  }
+	
+		}
+else
+{
+	user.addusermsg(msg.author.id,msg);
+	var msgs = user.getmsgs(msg.author.id,msg);
+	if(msgs % 10 === 0){
+		msg.reply("You earned 10 coins keep chatting :)");
+		user.setmoney(msg.author.id,msg,user.getmoney(msg.author.id,msg) + 10);
+	} 
+}
+
+
+		//Command Handler
 	const text = msg.content;
 	if (text.startsWith(prefix)) {
 		// ?pet 00100000
@@ -69,6 +96,13 @@ const handleCommand = async msg => {
 			logger.verbose(err.stack);
 		}
 	}
+	}
+	else
+	{
+
+	}
+
+	
 }
 
 
