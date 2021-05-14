@@ -1,5 +1,5 @@
 module.exports = {
-    mainChannel: "825193380082352168",
+    mainChannel: "752059816427388928",
     owners: ["192615247448768512"],
     prefix: "}"
 }

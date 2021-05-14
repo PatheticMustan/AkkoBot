@@ -1,5 +1,5 @@
 # AkkoBot
-A bot template, with everything you've ever dreamed of.
+Powered by believing hearts.
 
 ## Goals:
 - Make it easy enough to add new commands
