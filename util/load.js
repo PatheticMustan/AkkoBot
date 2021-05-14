@@ -4,12 +4,20 @@ module.exports = client => {
     client.loadCommand = (fileName) => {
         try {
             const command = require(`../commands/${fileName}`);
+
+            if (client.used.has(command.name)) throw new Error(`Command already used in ${client.used.get(command.name)}.`);
             
             // this cleanliness is addicting, an almost ethereal state of existance
             client.commands.set(command.name, command);
             command?.setup?.(client);
-            command?.aliases.forEach(alias => client.aliases.set(alias, command.name));
-
+            client.used.set(command.name, fileName);
+            
+            command?.aliases.forEach(alias => {
+                if (client.used.has(alias)) logger.warn(`Alias (${alias}) in ${fileName} already used in ${client.used.get(alias)}.`);
+                client.aliases.set(alias, command.name);
+                client.used.set(alias, fileName)
+            });
+            
             return true;
         } catch (err) {
             logger.error(`Unable to load command ${fileName}: ${err}`);

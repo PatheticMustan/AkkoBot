@@ -23,6 +23,8 @@ client.commands = new Collection();
 client.aliases = new Collection();
 client.events = new Collection();
 
+client.used = new Collection();
+
 const commandFiles = fs.readdirSync("./commands").filter(file => file.endsWith(".js"));
 const eventFiles = fs.readdirSync("./events").filter(file => file.endsWith(".js"));
 
@@ -42,7 +44,7 @@ const loadedEvents = eventFiles.map(fileName => client.loadEvent(fileName)).redu
 logger.info(`Loaded ${loadedCommands}/${commandFiles.length} commands` +
 	(failedCommands? `, failed to load ${failedCommands} commands` : ""));
 
-logger.info(`Loaded ${loadedEvents}/${eventFiles.length} commands` +
+logger.info(`Loaded ${loadedEvents}/${eventFiles.length} events` +
 	(failedEvents? `, failed to load ${failedEvents} events` : ""));
 
 
@@ -61,7 +63,9 @@ const handleCommand = async msg => {
 		
 		const alias = client.aliases.get(commandName);
 		const command = client.commands.get(commandName) || client.commands.get(alias);
-		
+
+		if (command === undefined) return;
+
 		try {
 			command.run(client, msg, args);
 		} catch (err) {

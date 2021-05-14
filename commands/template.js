@@ -2,6 +2,7 @@ module.exports = {
     name: "template",
     description: "template description",
     aliases: [],
+    disabled: false,
     setup: (client) => {
         this.testing = "Hello world!"
     },
