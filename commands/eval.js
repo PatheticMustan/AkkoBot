@@ -9,7 +9,13 @@ module.exports = {
         if (!config.owners.includes(message.author.id)) return message.channel.send("Only owners of the bot can run this command.");
 
         // eval it, and stringify
-        const response = eval(args[0]) + "";
+        let response = "";
+        try {
+            response = eval(args.join(" ")) + "";
+        } catch (err) {
+            response = err + "";
+        }
+        
         if (response.length === 0) return message.channel.send("No result.");
         if (response.length > 2000) return message.channel.send(`Result is too big! (${response.length})`);
 

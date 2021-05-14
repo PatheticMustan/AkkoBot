@@ -65,8 +65,10 @@ const handleCommand = async msg => {
 
 		if (command === undefined) return;
 
+		command.run(client, msg, args);
+
 		try {
-			command.run(client, msg, args);
+			
 		} catch (err) {
 			logger.error(err);
 			logger.verbose(err.stack);

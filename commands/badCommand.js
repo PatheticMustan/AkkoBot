@@ -1,7 +1,7 @@
 module.exports = {
     name: "throwerror",
     aliases: ["te"],
-    disabled: false,
+    disabled: true,
     setup: () => {},
     run: (client, message) => {
         throw new Error("Oh no!");

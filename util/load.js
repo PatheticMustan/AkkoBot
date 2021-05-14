@@ -5,6 +5,7 @@ module.exports = client => {
         try {
             const command = require(`../commands/${fileName}`);
 
+            if (command.disabled) return true;
             if (client.used.has(command.name)) throw new Error(`Command already used in ${client.used.get(command.name)}.`);
             
             // this cleanliness is addicting, an almost ethereal state of existance

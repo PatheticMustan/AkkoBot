@@ -13,7 +13,7 @@ module.exports = {
             .setTitle("AkkoBot Help")
             .setDescription("Help for the bot")
             .addField("Current prefix", config.prefix)
-            .addField("Bot Commands", config.prefix)
+            .addField("Bot Commands", Array.from(client.commands.keys()).join(" | "))
             .addField("Found an issue?", `Please report any issues to ${owners}.`)
             
 
