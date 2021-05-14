@@ -4,7 +4,7 @@ module.exports = {
     disabled: false,
     setup: () => {},
     run: (client, message) => {
-        throw new Er }
+        throw new Error("Oh no!");
         message.reply("$0.00! Poor!");
     }
 }
