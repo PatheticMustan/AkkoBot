@@ -5,15 +5,13 @@ const customLevels = {
         error: 0,
         warn: 1,
         info: 2,
-        verbose: 3,
-        debug: 4
+        verbose: 3
     },
     colors: {
         error: "red",
         warn: "yellow",
         info: "green",
-        verbose: "gray",
-        debug: "orange"
+        verbose: "gray"
     }
 }
 
@@ -24,9 +22,17 @@ const logger = winston.createLogger({
             format: winston.format.combine(
                 winston.format.colorize(),
                 winston.format.simple()
-            )
+            ),
+            level: "info"
         }),
-        new winston.transports.File({ filename: "combined.log" })
+        new winston.transports.File({
+            filename: "combined.log",
+            format: winston.format.combine(
+                winston.format.timestamp(),
+                winston.format.simple()
+            ),
+            level: "verbose"
+        })
     ]
 });
 

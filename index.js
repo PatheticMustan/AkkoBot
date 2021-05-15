@@ -7,6 +7,7 @@ const config = require("./config.js");
 const logger = require("./util/logger");
 const { prefix } = config;
 
+logger.info(`\n\n--- Bot started ${Date()}`)
 
 // mongod, the god almighty of data storage
 // TODO
