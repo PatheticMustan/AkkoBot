@@ -1,0 +1,40 @@
+
+
+Error logged at 1630424856263
+Error: Oh no!
+    at Object.run (D:\Workspace\Github\AkkoBot\commands\badCommand.js:7:15)
+    at handleCommand (D:\Workspace\Github\AkkoBot\index.js:72:12)
+    at Client.<anonymous> (D:\Workspace\Github\AkkoBot\index.js:53:35)
+    at Client.emit (events.js:315:20)
+    at MessageCreateAction.handle (D:\Workspace\Github\AkkoBot\node_modules\discord.js\src\client\actions\MessageCreate.js:31:14)
+    at Object.module.exports [as MESSAGE_CREATE] (D:\Workspace\Github\AkkoBot\node_modules\discord.js\src\client\websocket\handlers\MESSAGE_CREATE.js:4:32)
+    at WebSocketManager.handlePacket (D:\Workspace\Github\AkkoBot\node_modules\discord.js\src\client\websocket\WebSocketManager.js:384:31)
+    at WebSocketShard.onPacket (D:\Workspace\Github\AkkoBot\node_modules\discord.js\src\client\websocket\WebSocketShard.js:444:22)
+    at WebSocketShard.onMessage (D:\Workspace\Github\AkkoBot\node_modules\discord.js\src\client\websocket\WebSocketShard.js:301:10)
+    at WebSocket.onMessage (D:\Workspace\Github\AkkoBot\node_modules\ws\lib\event-target.js:132:16)
+
+Error logged at 1630424922348 (Tue Aug 31 2021 11:48:42 GMT-0400 (Eastern Daylight Time))
+Error: Oh no!
+    at Object.run (D:\Workspace\Github\AkkoBot\commands\badCommand.js:7:15)
+    at handleCommand (D:\Workspace\Github\AkkoBot\index.js:72:12)
+    at Client.<anonymous> (D:\Workspace\Github\AkkoBot\index.js:53:35)
+    at Client.emit (events.js:315:20)
+    at MessageCreateAction.handle (D:\Workspace\Github\AkkoBot\node_modules\discord.js\src\client\actions\MessageCreate.js:31:14)
+    at Object.module.exports [as MESSAGE_CREATE] (D:\Workspace\Github\AkkoBot\node_modules\discord.js\src\client\websocket\handlers\MESSAGE_CREATE.js:4:32)
+    at WebSocketManager.handlePacket (D:\Workspace\Github\AkkoBot\node_modules\discord.js\src\client\websocket\WebSocketManager.js:384:31)
+    at WebSocketShard.onPacket (D:\Workspace\Github\AkkoBot\node_modules\discord.js\src\client\websocket\WebSocketShard.js:444:22)
+    at WebSocketShard.onMessage (D:\Workspace\Github\AkkoBot\node_modules\discord.js\src\client\websocket\WebSocketShard.js:301:10)
+    at WebSocket.onMessage (D:\Workspace\Github\AkkoBot\node_modules\ws\lib\event-target.js:132:16)
+
+Error logged at 1630463736345 (Tue Aug 31 2021 22:35:36 GMT-0400 (Eastern Daylight Time))
+ReferenceError: fetch is not defined
+    at Object.run (D:\Workspace\Github\AkkoBot\commands\mangalist.js:9:9)
+    at handleCommand (D:\Workspace\Github\AkkoBot\index.js:72:12)
+    at Client.<anonymous> (D:\Workspace\Github\AkkoBot\index.js:53:35)
+    at Client.emit (events.js:315:20)
+    at MessageCreateAction.handle (D:\Workspace\Github\AkkoBot\node_modules\discord.js\src\client\actions\MessageCreate.js:31:14)
+    at Object.module.exports [as MESSAGE_CREATE] (D:\Workspace\Github\AkkoBot\node_modules\discord.js\src\client\websocket\handlers\MESSAGE_CREATE.js:4:32)
+    at WebSocketManager.handlePacket (D:\Workspace\Github\AkkoBot\node_modules\discord.js\src\client\websocket\WebSocketManager.js:384:31)
+    at WebSocketShard.onPacket (D:\Workspace\Github\AkkoBot\node_modules\discord.js\src\client\websocket\WebSocketShard.js:444:22)
+    at WebSocketShard.onMessage (D:\Workspace\Github\AkkoBot\node_modules\discord.js\src\client\websocket\WebSocketShard.js:301:10)
+    at WebSocket.onMessage (D:\Workspace\Github\AkkoBot\node_modules\ws\lib\event-target.js:132:16)

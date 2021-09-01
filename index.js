@@ -66,13 +66,15 @@ const handleCommand = async msg => {
 
 		if (command === undefined) return;
 
-		command.run(client, msg, args);
+		
 
 		try {
-			
+			command.run(client, msg, args);
 		} catch (err) {
-			logger.error(err);
-			logger.verbose(err.stack);
+			fs.appendFile('errors.txt', `\n\nError logged at ${Date.now()} (${Date()})\n${err.stack}`, function (errorCeption) {
+				if (errorCeption) console.log("oh fuck, we can't log errors");
+			});
+			logger.error(err.stack + "");
 		}
 	}
 }

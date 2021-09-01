@@ -3,7 +3,7 @@ const config = require("../config");
 module.exports = {
     name: "eval",
     description: "Evaluate arbitrary javascript! Only the bot owner can use this.",
-    usage: `eval <code>`,
+    usage: "eval <code>",
     aliases: ["e"],
     disabled: false,
     setup: () => {},

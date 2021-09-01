@@ -1,6 +1,7 @@
 module.exports = {
     name: "template",
     description: "template description",
+    usage: "template <required> [optional]",
     aliases: [],
     disabled: true,
     setup: (client) => {

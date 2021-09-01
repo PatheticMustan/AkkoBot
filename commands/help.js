@@ -5,6 +5,7 @@ const config = require("../config");
 module.exports = {
     name: "help",
     description: "Ask for help!",
+    usage: "help [command]",
     aliases: [],
     disabled: false,
     setup: (client) => {},
