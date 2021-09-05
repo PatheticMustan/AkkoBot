@@ -53,6 +53,10 @@ logger.info(`Loaded ${loadedEvents}/${eventFiles.length} events` +
 client.on("message", async msg => handleCommand(msg));
 client.on("messageUpdate", async msg => handleCommand(msg));
 
+client.on("error", (e) => logger.error(e));
+client.on("warning", (e) => logger.warn(e));
+client.on("debug", (e) => logger.verbose(e));
+
 const handleCommand = async msg => {
 	const text = msg.content;
 	if (text.startsWith(prefix)) {

@@ -21,24 +21,24 @@ module.exports = {
         .then(v => v.json())
         .then(comicsData => {
             let comics = comicsData.data.list; // .filter(comic => comic.is_today_update === true);
+            let groups = {}
 
             if (comics.length === 0) return message.channel.send("There are no comics...??? Try again soon.");
 
+            comics.map(comic => {
+                // oh yeah, the ??= operator
+                groups[comic.style[0]] = groups[comic.style[0]] || [];
+                groups[comic.style[0]].push(comic.title);
+            });
+            
+            console.log(groups);
+
             const ucEmbed = new MessageEmbed()
-                .setTitle("q-tip pit-q")
-                .addField("Fucking shower water", "[getting in my fucking ears](https://www.walmart.com/ip/Q-tips-Original-Cotton-Swabs-500-Count/10452580)")
+                .setTitle("Comics")
+                .addField("", "[getting in my fucking ears](https://www.walmart.com/ip/Q-tips-Original-Cotton-Swabs-500-Count/10452580)")
                 .addField("i love q tips so much",  "stupid fucking water [ahhhh](https://www.cvs.com/shop/q-tips-cotton-swabs-625-pack-prodid-1010416)\n[ehhhh](https://www.target.com/p/q-tips-cotton-swabs-625-ct/-/A-11223524)")
                 .setColor("F00BA7")
                 .setTimestamp()
-
-            message.channel.send(ucEmbed);
-
-            /*message.channel.send(
-                comics
-                    .map(comic => `${comic.title} (${comic.style.join("/")})`)
-                    .join("\n")
-                    .slice(0, 2000)
-            );*/
         });
     }
 }
